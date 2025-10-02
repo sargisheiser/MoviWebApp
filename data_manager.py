@@ -19,7 +19,7 @@ class DataManager:
         user = User.query.get(user_id)
         return user.movies if user else []
 
-    def add_movie(self, name, director, year, poster_url, user_id):
+    def add_movie(self, name=None, director=None, year=None, poster_url=None, user_id=None):
         """Add a new movie to a user's favorites."""
         new_movie = Movie(
             name=name,

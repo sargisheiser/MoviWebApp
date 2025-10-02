@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Movies for {{ username }}</h2>
+
+<ul id="movie-list" class="movie-list">
+    {% for movie in movies %}
+    <li data-id="{{ movie.id }}">
+        <img src="{{ movie.poster_url or url_for('static', filename='img/placeholder.png') }}" alt="Poster"
+             class="poster">
+        <strong>{{ movie.name }}</strong> ({{ movie.year }}) - Directed by {{ movie.director }}
+
+        <input type="text" class="update-title" placeholder="New title">
+        <button class="btn-update-movie">Update</button>
+        <button class="btn-delete-movie">❌</button>
+    </li>
+    {% else %}
+    <li>No movies yet</li>
+    {% endfor %}
+</ul>
+
+<h3>Add Movie</h3>
+<form id="add-movie-form" data-user-id="{{ user_id }}">
+    <input type="text" id="new-movie-title" placeholder="Add a movie by title" required>
+    <button type="submit">Add</button>
+</form>
+
+<p><a href="{{ url_for('index') }}">⬅ Back to Users</a></p>
+{% endblock %}
+
+
