@@ -1,74 +1,385 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f8f9fa;
-  color: #333;
-  margin: 0;
-  padding: 0;
+/* === Global Variables === */
+:root {
+    --primary: #667eea;
+    --primary-light: #7c90f5;
+    --primary-dark: #5568d3;
+    --accent: #764ba2;
+    --danger: #ef4444;
+    --danger-dark: #dc2626;
+    --success: #10b981;
+    --bg: #0f172a;
+    --bg-light: #1e293b;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --shadow: rgba(0, 0, 0, 0.3);
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* === Header === */
 header {
-  background: #222;
-  color: #fff;
-  padding: 1em;
-  text-align: center;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--card-border);
+    padding: 1.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px var(--shadow);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
 }
 
 header a {
-  color: #fff;
-  text-decoration: none;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
 }
 
+header a:hover {
+    color: #fff;
+}
+
+/* === Main Layout === */
 main {
-  padding: 2em;
-  max-width: 800px;
-  margin: auto;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease-out;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* === Card === */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px var(--shadow);
+}
+
+/* === Lists === */
 ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
 }
 
-.user-list li, .movie-list li {
-  margin: 0.5em 0;
-  padding: 0.5em;
-  border-bottom: 1px solid #ddd;
+.user-list li,
+.movie-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease-out backwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.user-list li:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.user-list li:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.user-list li:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.user-list li:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.movie-list li:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.movie-list li:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.movie-list li:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.movie-list li:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.movie-list li:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.movie-list li:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.user-list li:hover,
+.movie-list li:hover {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(4px);
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    flex: 1;
+    color: #fff;
+}
+
+.movie-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.movie-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.movie-details {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* === Poster Images === */
+.poster {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.poster:hover {
+    transform: scale(1.05);
+}
+
+/* === Forms === */
+form {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 input[type="text"] {
-  padding: 0.4em;
-  margin-right: 0.5em;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--card-border);
+    background: rgba(15, 23, 42, 0.5);
+    color: var(--text);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    min-width: 200px;
+    transition: all 0.3s ease;
 }
 
-button {
-  padding: 0.4em 0.8em;
-  border: none;
-  border-radius: 4px;
-  background: #007bff;
-  color: #fff;
-  cursor: pointer;
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    background: rgba(15, 23, 42, 0.7);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
-button:hover {
-  background: #0056b3;
+input[type="text"]::placeholder {
+    color: var(--text-muted);
+}
+
+/* === Buttons === */
+button, .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button::before, .btn::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+button:hover::before, .btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.btn:active {
+    transform: translateY(0);
 }
 
 .btn-delete {
-  background: #dc3545;
+    background: var(--danger);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
 }
 
 .btn-delete:hover {
-  background: #a71d2a;
+    background: var(--danger-dark);
+    transform: translateY(-2px) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
 }
 
-.poster {
-  width: 50px;
-  height: auto;
-  margin-right: 10px;
-  vertical-align: middle;
+/* === Add User Section === */
+.add-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--card-border);
 }
 
+.add-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
 
+/* === Responsive === */
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+
+    header {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .user-list li,
+    .movie-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .poster {
+        width: 60px;
+        height: 90px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        min-width: unset;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    button, .btn {
+        width: 100%;
+    }
+}
