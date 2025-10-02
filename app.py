@@ -64,7 +64,7 @@ def api_update_user(user_id):
     return jsonify({"id": user.id, "name": user.name})
 
 
-@app.route("/api/users/<int:user_id>", methods=["DELETE"])
+@app.route("/api/users/<int:user_id>/delete", methods=["DELETE"])
 def api_delete_user(user_id):
     user = User.query.get_or_404(user_id)
     db.session.delete(user)
@@ -147,17 +147,10 @@ def api_update_movie(movie_id):
 
 @app.route("/api/movies/<int:movie_id>", methods=["DELETE"])
 def api_delete_movie(movie_id):
-    movie = Movie.query.get_or_404(movie_id)
-    db.session.delete(movie)
-    db.session.commit()
-    return jsonify({"message": f"Movie {movie_id} deleted"}), 200
-
-
-@app.route("/users/<int:user_id>/movies/add", methods=["GET"])
-def add_movie_page(user_id):
-    from models import User
-    user = User.query.get_or_404(user_id)
-    return render_template("add_movie.html", username=user.name, user_id=user_id)
+    deleted = dm.delete_movie(movie_id)
+    if deleted:
+        return jsonify({"message": f"Movie {movie_id} deleted"}), 200
+    return jsonify({"error": f"Movie {movie_id} not found"}), 404
 
 
 if __name__ == "__main__":
