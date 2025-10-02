@@ -31,6 +31,12 @@ def movies(user_id):
     return render_template("movies.html", username=user.name, movies=movies)
 
 
+@app.route("/users")
+def list_users():
+    users = dm.get_users()
+    return ", ".join([user.name for user in users])
+
+
 if __name__ == "__main__":
     with app.app_context():
         if not os.path.exists("instance/moviweb.sqlite"):
