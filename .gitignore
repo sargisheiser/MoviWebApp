@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.Python
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# PyCharm
+.idea/
+*.iml
+
+# Logs & OS files
+*.log
+.DS_Store
+Thumbs.db
+
+# Byte-compiled / optimized / DLL files
+*.pyo
+*.pyd
+*.dll
+
+# Testing
+.coverage
+.tox/
+pytest_cache/
+htmlcov/
+
+# Flask cache
+instance/
+*.db
+*.sqlite3
+*.sqlite
+
+# Environment variables
+.env
+*.env
+
+
